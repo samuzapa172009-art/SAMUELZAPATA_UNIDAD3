@@ -1,0 +1,58 @@
+ a=1
+t=1
+ct=0
+pt=0
+while a>0:
+
+    p=float(input("Ingrese la presión 1: "))
+    ap=float(44330*(1-(p/1013.25)**0.1903))
+    vp=ap/t
+    print(f"Se tiene una altitud de {ap}, una velocidad de {vp}")
+    t1=t+1
+    p=float(input("Ingrese la presión 2: "))
+    a=float(44330*(1-(p/1013.25)**0.1903))
+    v=a/t1
+    print(f"Se tiene una altitud de {a}, una velocidad de {v}")
+    dt=t1-t
+
+    da=a-ap
+    A=da/dt
+
+    if da > 0:
+        f = 'ascenso'
+    elif da == 0:
+        f = "apogeo"
+    elif da < 0: 
+        f = "descenso"
+
+    if a > ap:
+        amax = a
+    elif ap > a:
+        amax = ap
+    elif ap == a:
+        amax = a
+
+    acmax = 0
+    if A > acmax:
+        acmax = A
+
+    
+
+    T=int(input("Ingresar la temperatura del motor: "))
+    
+    ct=ct+1
+    pt=pt+T
+    prom=pt/ct
+
+
+    if T >= 1000:
+        temperatura = "está sobrecalentado"
+    else:
+        temperatura = "funciona bajo condiciones normales"
+
+    print(f"El motor {temperatura}")
+    print(f"La altura máxima alcanzada fue de: {amax}")
+    print(f"La aceleración máxima alcanzada fue de: {A}m/s^2")
+    print(f"Promedio de temperaturas: {prom}°C")
+    print(f"El cohete se encuentra en la fase de: {f}")
+
